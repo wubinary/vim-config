@@ -41,6 +41,7 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'preservim/nerdtree'
 Plugin 'majutsushi/tagbar'
+Plugin 'scrooloose/nerdcommenter'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between here and filetype plugin indent on.
@@ -99,6 +100,9 @@ nmap <F6> :TagbarToggle<CR>
 let g:tagbar_width = 25
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+
+" visual block
+"nnoremap b <c-v> " remap `b` to `Ctrl-v`
 
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Plugin commands are not allowed.
