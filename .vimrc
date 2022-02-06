@@ -77,6 +77,8 @@ set <C-b>=^B
 map <C-u> :set fileencoding=utf8
 map <C-b> :set fileencoding=big5
 
+set nofixendofline " lint check, trailing space problem
+
 
 " NERDTree
 nnoremap <F5> :NERDTreeToggle<CR>
