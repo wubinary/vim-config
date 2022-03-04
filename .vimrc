@@ -106,6 +106,13 @@ let g:tagbar_width = 25
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
 
+" move tabs to left/right Alt-左/Alt-右
+noremap <A-Left> :-tabmove<cr>
+noremap <A-Right> :+tabmove<cr>
+
+" reload all file (if changed outside)
+nnoremap <F3> :checktime<CR>
+
 " visual block
 "nnoremap b <c-v> " remap `b` to `Ctrl-v`
 
