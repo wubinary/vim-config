@@ -113,6 +113,9 @@ noremap <A-Right> :+tabmove<cr>
 " reload all file (if changed outside)
 nnoremap <F3> :checktime<CR>
 
+" replace dos ^M to normal endline
+nnoremap <F2> :e ++ff=dos<CR>
+
 " visual block
 "nnoremap b <c-v> " remap `b` to `Ctrl-v`
 
