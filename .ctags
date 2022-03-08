@@ -18,3 +18,14 @@
 --exclude=\*.cache
 --exclude=\*.dll
 --exclude=\*.pdb
+--exclude=\*.bin
+--exclude=\*.obj
+--exclude=\*.bp
+--exclude=\*.mk
+--exclude=\*.cfg
+--exclude=\*.txt
+--exclude=\*.TXT
+--exclude=\workspace.vim
+--exclude=\makefile
+--exclude=\CMakeLists.txt
+--exclude=\tags
