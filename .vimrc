@@ -2,6 +2,7 @@
 colorscheme molokai 
 set bg=dark
 set t_Co=256
+set ttymouse=sgr
 
 " you complete me
 let g:ycm_server_keep_logfiles = 1
