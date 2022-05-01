@@ -39,7 +39,7 @@ call vundle#rc()
 
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
-Plugin 'VundleVim/Vundle.vim'
+"Plugin 'VundleVim/Vundle.vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'preservim/nerdtree'
 Plugin 'majutsushi/tagbar'
@@ -119,6 +119,13 @@ nnoremap <F2> :e ++ff=dos<CR>
 
 " visual block
 "nnoremap b <c-v> " remap `b` to `Ctrl-v`
+
+" remove trailing space
+nnoremap <F10> :%s/\s\+$//e<CR>
+set nofixendofline " trailing whitespace (lint)
+
+" ctrl-f search words
+map <C-F> /
 
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Plugin commands are not allowed.
