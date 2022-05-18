@@ -44,6 +44,7 @@ Plugin 'Valloric/YouCompleteMe'
 Plugin 'preservim/nerdtree'
 Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'Lokaltog/vim-powerline'
 
 " The following are examples of different formats supported.
 " Keep Plugin commands between here and filetype plugin indent on.
