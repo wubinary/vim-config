@@ -82,19 +82,29 @@ map <C-b> :set fileencoding=big5
 
 set nofixendofline " lint check, trailing space problem
 
+" ***** [ Search word with F4 to (highlight) ] *****
+"set hlsearch
+hi Search ctermbg=LightCyan
+noremap <F4> :set hlsearch! hlsearch?<CR>
+set hlsearch
 
-" NERDTree
+" ***** [ NERDTree ] *****
 nnoremap <F5> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 " Start NERDTree. If a file is specified, move the cursor to its window.
 " autocmd StdinReadPre * let s:std_in=1
 " autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
 " Exit Vim if NERDTree is the only window remaining in the only tab.
-autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
 " Open the existing NERDTree on each new tab.
-autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
+"autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
 " Close Nerdtree when closing file
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+" Click in NerdTree & keep cursor into opended file
+autocmd VimEnter * wincmd p
+" Close Nerdtree when closing file
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif  " ##########################
 " change Tab
 map  <C-l> :tabn<CR>
 map  <C-j> :tabp<CR>
@@ -102,7 +112,7 @@ map  <C-n> :tabnew<CR>
 let g:NERDTreeWinSize=20
 "let NERDTreeShowHidden=1
 
-" TAGBar
+" ***** [ TAGBar ] *****
 nmap <F6> :TagbarToggle<CR>
 let g:tagbar_width = 25
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
