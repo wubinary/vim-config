@@ -3,14 +3,16 @@ colorscheme molokai
 set bg=dark
 set t_Co=256
 set ttymouse=sgr
+set modifiable
 
 " you complete me
-let g:ycm_server_keep_logfiles = 1
-let g:ycm_server_log_level = 'debug'
+let g:ycm_server_keep_logfiles = 0
+"let g:ycm_server_log_level = 'debug'
 "let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
-"let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_server_python_interpreter='/usr/bin/python3'
+"let g:ycm_python_binary_path='~/miniconda3/bin/python'
 "let g:ycm_python_binary_path='./venv/bin/python'
 let g:ycm_global_ycm_extra_conf='~/.vim/bundle/YouCompleteMe/.ycm_extra_conf.py'
 let g:ycm_max_num_candidates = 100 " 0 means no limit
@@ -23,7 +25,11 @@ let g:syntastic_c_checkers = ['make']
 let g:syntastic_always_populate_loc_list = 1
 let g:ycm_enable_diagnostic_signs = 1
 let g:ycm_enable_diagnostic_highlighting = 0
+
+let g:clang_debug = 0
+let g:clang_library_path = '/lib/clang/10/lib/linux/libclang.so'
 let g:ycm_clangd_args=['--header-insertion=never']
+let g:clang_snippets_engine='clangd_complete'
 
 let g:syntastic_check_on_open = 1
 let g:syntastic_enable_signs = 1
@@ -46,6 +52,9 @@ Plugin 'majutsushi/tagbar'
 Plugin 'scrooloose/nerdcommenter'
 Plugin 'Lokaltog/vim-powerline'
 
+" Pathogen plugin manage: nerdtree
+execute pathogen#infect()
+
 " The following are examples of different formats supported.
 " Keep Plugin commands between here and filetype plugin indent on.
 " git repos on your local machine (i.e. when working on your own plugin)
@@ -60,18 +69,16 @@ set backspace=indent,eol,start
 set mouse=a
 set number
 
-" 2個空白
+" 4個空白
+"set noexpandtab
 set expandtab
 set tabstop=4
-"set softtabstop=2
-set shiftwidth=4
+set shiftwidth=4 " 換行，跳4個空白
 
 set backspace=2
 set ai
 
 set colorcolumn=100
-
-set autoread
 
 set fileencodings=utf8,big5,gbk,latin1
 set fileencoding=utf8
@@ -80,27 +87,14 @@ set <C-b>=^B
 map <C-u> :set fileencoding=utf8
 map <C-b> :set fileencoding=big5
 
-set nofixendofline " lint check, trailing space problem
-
-" ***** [ Search word with F4 to (highlight) ] *****
-"set hlsearch
-hi Search ctermbg=LightCyan
-noremap <F4> :set hlsearch! hlsearch?<CR>
-set hlsearch
+" ***** [ Split-window resize ] *****
+"nnoremap <C-Up>    :resize +2<CR>
+"nnoremap <C-Down>  :resize -2<CR>
+"nnoremap <C-Left>  :vertical resize +2<CR>
+"nnoremap <C-Right> :vertical resize -2<CR>
 
 " ***** [ NERDTree ] *****
 nnoremap <F5> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-" Start NERDTree. If a file is specified, move the cursor to its window.
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * NERDTree | if argc() > 0 || exists("s:std_in") | wincmd p | endif
-" Exit Vim if NERDTree is the only window remaining in the only tab.
-"autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
-" Open the existing NERDTree on each new tab.
-"autocmd BufWinEnter * if getcmdwintype() == '' | silent NERDTreeMirror | endif
-" Close Nerdtree when closing file
-"autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-
 " Click in NerdTree & keep cursor into opended file
 autocmd VimEnter * wincmd p
 " Close Nerdtree when closing file
@@ -109,35 +103,26 @@ autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isT
 map  <C-l> :tabn<CR>
 map  <C-j> :tabp<CR>
 map  <C-n> :tabnew<CR>
-let g:NERDTreeWinSize=20
+let g:NERDTreeWinSize=30
 "let NERDTreeShowHidden=1
 
 " ***** [ TAGBar ] *****
+" g]:find all matches  ctrl+<mouse-L>:find first
 nmap <F6> :TagbarToggle<CR>
-let g:tagbar_width = 25
+let g:tagbar_width = 30
+
 map <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
 map <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-
-
-" **** [Save vim session] ****
-map <C-s> :tabdo NERDTreeClose <bar> TagbarClose <CR>:mksession! ~/.vim/My_Session.vim <CR>
-map <C-o> :tabdo NERDTreeFocus <bar> wincmd p <bar> TagbarOpen <bar> wa <CR>
-map <C-c> :tabdo NERDTreeClose <bar> TagbarClose <CR>
-"cnoremap
-
 
 " move tabs to left/right Alt-左/Alt-右
 noremap <A-Left> :-tabmove<cr>
 noremap <A-Right> :+tabmove<cr>
 
-" reload all file (if changed outside)
-nnoremap <F3> :checktime<CR>
-
 " change to dos file formate, which end with ^M
 nnoremap <F2> :e ++ff=dos<CR>
 
-" visual block
-"nnoremap b <c-v> " remap `b` to `Ctrl-v`
+" reload all file (if changed outside)
+nnoremap <F3> :checktime<CR>
 
 " remove trailing space
 nnoremap <F10> :%s/\s\+$//e<CR>
@@ -145,6 +130,15 @@ set nofixendofline " trailing whitespace (lint)
 
 " ctrl-f search words
 map <C-F> /
+
+" ***** [ Search word with F4 to (highlight) ] *****
+"set hlsearch
+hi Search ctermbg=LightCyan
+noremap <F4> :set hlsearch! hlsearch?<CR>
+set hlsearch
+
+" visual block
+"nnoremap b <c-v> " remap `b` to `Ctrl-v`
 
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Plugin commands are not allowed.
