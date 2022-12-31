@@ -81,57 +81,23 @@ set ai
 
 set colorcolumn=100
 
+" file encoding
 set fileencodings=utf8,big5,gbk,latin1
 set fileencoding=utf8
-set <C-u>=^U
-set <C-b>=^B
-map <C-u> :set fileencoding=utf8
-map <C-b> :set fileencoding=big5
+"set <C-u>=^U
+"set <C-b>=^B
+"map <C-u> :set fileencoding=utf8
+"map <C-b> :set fileencoding=big5
 
-" change Tab
-map  <C-l> :tabn<CR>
-map  <C-j> :tabp<CR>
-map  <C-n> :tabnew<CR>
-
-" ***** [       NERDTree      ] *****
-nnoremap <F5> :NERDTreeToggle<CR>
-" Click in NerdTree & keep cursor into opended file
-autocmd VimEnter * wincmd p
-" Close Nerdtree when closing file
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-" Other Nerdtree config
-let g:NERDTreeWinSize=30
-"let NERDTreeShowHidden=1
-
-" ***** [        TAGBar       ] *****
-" Usage :
-"   (1) g    + ]         : find all matches
-"   (2) ctrl + <mouse-L> : find first
-nnoremap <F6> :TagbarToggle<CR>
-nnoremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
-nnoremap <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
-" Other TAGBar config
-let g:tagbar_width = 30
-
-" ***** [ Search word with F4 to (LigtCyan) ] *****
-nnoremap <F4> :set hlsearch! hlsearch?<CR>
+" search word
 set hlsearch
-hi Search ctermbg=LightCyan
 
-" ***** [          Save vim session         ] *****
-nnoremap <C-e> : tabdo NERDTreeClose <bar> TagbarClose <CR> : mksession! ~/.vim/My_Session.vim
-nnoremap <C-o> : tabdo NERDTreeFocus <bar> wincmd p <bar> TagbarOpen <bar> wa <CR>
-nnoremap <C-p> : tabdo NERDTreeClose <bar> TagbarClose <CR>
+" trailing whitespace (lint)
+set nofixendofline 
 
-" ***** [ Split-window resize ] *****
-"nnoremap <C-Up>    :resize +2<CR>
-"nnoremap <C-Down>  :resize -2<CR>
-"nnoremap <C-Left>  :vertical resize +2<CR>
-"nnoremap <C-Right> :vertical resize -2<CR>
-
-" move tabs to left/right Alt-左/Alt-右
-nnoremap <A-Left>  : -tabmove<cr>
-nnoremap <A-Right> : +tabmove<cr>
+" **************************************************************************************************
+" ******************                  extra utils operations              **************************
+" **************************************************************************************************
 
 " change to dos file formate, which end with ^M
 nnoremap <F2> :e ++ff=dos<CR>
@@ -141,8 +107,62 @@ nnoremap <F3> :checktime<CR>
 
 " remove trailing space
 nnoremap <F10> :%s/\s\+$//e<CR>
-set nofixendofline " trailing whitespace (lint)
 
+" ctrl-f search words
+nnoremap <C-F> /
+
+" ctrl-g search words
+nnoremap <C-G> :
+
+" resize splited windows
+"nnoremap <C-Up>    :resize +2<CR>
+"nnoremap <C-Down>  :resize -2<CR>
+"nnoremap <C-Left>  :vertical resize +2<CR>
+"nnoremap <C-Right> :vertical resize -2<CR>
+
+" **************************************************************************************************
+" ******************                 extra plugins operations              *************************
+" **************************************************************************************************
+
+" ***************** [ NERDTree ] ******************
+nnoremap <F5> :NERDTreeToggle<CR>
+" Click in NerdTree & keep cursor into opended file
+autocmd VimEnter * wincmd p
+" Close Nerdtree when closing file
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+" Other Nerdtree config
+let g:NERDTreeWinSize=30
+"let NERDTreeShowHidden=1
+
+" ****************** [ TAGBar ] *******************
+" change Tab
+nnoremap <C-n> :tabnew<CR>
+nnoremap <C-j>     :tabp<CR>
+nnoremap <C-l>     :tabn<CR>
+nnoremap <C-Left>  :tabp<CR>
+nnoremap <C-Right> :tabn<CR>
+" move tabs to left/right Alt-左/Alt-右
+nnoremap <A-Left>  : -tabmove<cr>
+nnoremap <A-Right> : +tabmove<cr>
+" Usage :
+"   (1) g    + ]         : find all matches
+"   (2) ctrl + <mouse-L> : find first
+nnoremap <F6> :TagbarToggle<CR>
+"nnoremap <C-\> :tab split<CR>:exec("tag ".expand("<cword>"))<CR>
+"nnoremap <A-]> :vsp <CR>:exec("tag ".expand("<cword>"))<CR>
+" Other TAGBar config
+let g:tagbar_width = 30
+
+" ********** [ Vim session operation ] ************
+nnoremap <C-e> : tabdo NERDTreeClose <bar> TagbarClose <CR>: mksession! ~/.vim/My_Session.vim
+nnoremap <C-o> : tabdo NERDTreeFocus <bar> wincmd p <bar> TagbarOpen <bar> wa <CR>
+nnoremap <C-p> : tabdo NERDTreeClose <bar> TagbarClose <CR>
+
+" ********** [ Search word (LigtCyan) ] ***********
+nnoremap <F4> :set hlsearch! hlsearch?<CR>
+hi Search ctermbg=LightCyan
+
+" *************** [ Highlight.vim ] ***************
 " hightlight cursor text (ctrl-*)
 nnoremap <C-H><F1> : HighlightSearch 1<CR>
 nnoremap <C-H><F2> : HighlightSearch 2<CR>
@@ -152,8 +172,6 @@ nnoremap <C-H><F5> : HighlightSearch 5<CR>
 nnoremap <C-H><F6> : HighlightSearch 6<CR>
 nnoremap <C-H><F12> : HighlightUndo<CR>
 
-" ctrl-f search words
-map <C-F> /
 
 " see :h vundle for more details or wiki for FAQ
 " NOTE: comments after Plugin commands are not allowed.
