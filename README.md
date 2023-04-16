@@ -3,7 +3,7 @@ My Vim Config
 
 ## Installation
 - install depends (cmake for ycmd, ctags for tagbar)
-    - `sudo apt install cmake ctags` 
+    - `sudo apt install cmake universal-ctags vim` 
 - clone this repo & vundle plugin manager
     - `git clone https://github.com/wubinary/vim-config.git && cd vim-config && cp -rP .vimrc .ctags .vim ~/ && cd ..`
     - `git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle`
