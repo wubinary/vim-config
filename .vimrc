@@ -124,6 +124,11 @@ nnoremap <C-G> :
 " ******************                 extra plugins operations              *************************
 " **************************************************************************************************
 
+" *************** [ NERDComment ] *****************
+" Usage:
+"      Comment: [Shift-v] , \-c-c
+"   Un Comment: [Shift-v] , \-c-u 
+
 " ***************** [ NERDTree ] ******************
 nnoremap <F5> :NERDTreeToggle<CR>
 " Click in NerdTree & keep cursor into opended file
